@@ -27,7 +27,7 @@ export const createCategory = async (req: Request, res: Response) => {
             name,
         });
 
-        return res.status(201).json(newCategory);
+        return res.status(200).json(newCategory);
     } catch (error) {
         console.error('Cannot create Categories', error);
         res.status(500).json({ message: 'Internal Server Error' });

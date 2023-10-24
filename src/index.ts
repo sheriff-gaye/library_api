@@ -9,13 +9,13 @@ import routes from './routes/routes'
 
 const app = express();
 
-app.use(cors({
-    credentials: true,
-}));
+app.use(cors());
 
 app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
+app.use('/',routes);
+
 
 const server = http.createServer(app);
 
@@ -27,4 +27,3 @@ server.listen(8080, () => {
 
 
 
-app.use('/',routes);

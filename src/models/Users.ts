@@ -26,10 +26,7 @@ User.init({
     }
 
 
-}, {
-    sequelize,
-    modelName: 'User',
-});
+}, {sequelize});
 
 User.sync();
 

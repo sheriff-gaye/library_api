@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import User from "../models/Users";
-import Category from "../models/Category";
+import bcrypt  from 'bcrypt';
+
 
 export const getUsers = async (req: Request, res: Response) => {
 
@@ -17,8 +18,9 @@ export const createUsers = async (req: Request, res: Response) => {
 
     try {
         const { fullName, email, password } = req.body
+        const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = await User.create({
-            fullName, email, password
+            fullName, email, password:hashedPassword
         });
 
         return res.status(200).json(newUser);

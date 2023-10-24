@@ -1,4 +1,4 @@
-import { DataTypes, Model, UUID, UUIDV1 } from 'sequelize';
+import { DataTypes, Model, UUIDV1 } from 'sequelize';
 import sequelize from '../../connection';
 
 class Category extends Model {
@@ -9,17 +9,15 @@ Category.init({
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
-        defaultValue: UUIDV1, // Corrected value here
+        defaultValue: UUIDV1,
     },
     name: {
         type: DataTypes.STRING,
         allowNull: false,
     },
 }, {
-    sequelize,
-    modelName: 'Category',
-});
+    sequelize});
 
-Category.sync({alter:{drop:false}});
+Category.sync();
 
 export default Category;
