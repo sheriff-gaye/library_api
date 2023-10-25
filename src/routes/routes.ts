@@ -5,7 +5,7 @@ const router = express.Router();
 import {createCategory, deleteCategory, getCategory, updateCategory} from '../controllers/categoryController';
 import { createUsers, deleteUser, getUsers, updateUsers } from "../controllers/userController";
 import { createAuthor, deleteAuthor, getAuthor, updateAuthor } from "../controllers/authorsController";
-import { createBoook } from "../controllers/booksController";
+import { createBook, deleteBooks, getBooks, updateBooks } from "../controllers/booksController";
 
 
 router.get('/category',getCategory);
@@ -25,8 +25,10 @@ router.delete('/author/:id',deleteAuthor)
 
 
 
-
-router.route('/books').post(createBoook);
+router.get('/books',getBooks);
+router.post('/books', createBook);
+router.patch('/books/:id',updateBooks);
+router.delete('/books/:id',deleteBooks);
 
 
 

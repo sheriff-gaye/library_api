@@ -16,7 +16,7 @@ export const getAuthor = async (req: Request, res: Response) => {
 
     } catch (error) {
 
-        console.log("annot get Author");
+        console.log("cannot get Author");
 
     }
 }
