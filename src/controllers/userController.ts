@@ -15,22 +15,31 @@ export const getUsers = async (req: Request, res: Response) => {
 }
 
 export const createUsers = async (req: Request, res: Response) => {
-
     try {
-        const { fullName, email, password } = req.body
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = await User.create({
-            fullName, email, password:hashedPassword
-        });
-
-        return res.status(200).json(newUser);
-
+      const { fullName, email, password } = req.body;
+  
+      const checkUserExist = await User.findOne({where:{
+        email:email
+      }});
+      if (checkUserExist) {
+        return res.status(400).json({ message: 'User already exists' });
+      }
+  
+     
+      const hashedPassword = await bcrypt.hash(password, 10);
+  
+      const newUser = await User.create({
+        fullName,
+        email,
+        password: hashedPassword,
+      });
+  
+      return res.status(200).json(newUser);
     } catch (error) {
-        res.status(500).json({ message: 'Error in Creating Users' });
-
+      res.status(500).json({ message: 'Error in creating user' });
     }
-
-}
+  };
+  
 
 export const updateUsers = async (req: Request, res: Response) => {
 

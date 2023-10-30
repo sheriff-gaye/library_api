@@ -17,7 +17,21 @@ export const getBooks = async (req: Request, res: Response) => {
     }
 }
 
+export const getSingleBook = async (req: Request, res: Response) => {
+    try {
+        const bookId = req.params.id;
+        const singleBook = await Books.findOne({ where: { id: bookId } });
+        if (!singleBook) {
+          return res.status(200).json({message:"Book Not Found"})
+        }
+        return res.status(200).send(singleBook);
 
+
+    } catch (error) {
+        return res.status(400).json({message:"error in getting the single book"});
+
+    }
+}
 
 
 export const createBook = async (req: Request, res: Response) => {

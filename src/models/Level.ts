@@ -26,4 +26,6 @@ Level.init({
     });
 
 
+Level.sync();
+
 export default Level;

@@ -23,7 +23,7 @@ Students.init({
         allowNull: false
     },
     date_of_birth: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATE,
         allowNull: false
     },
     gender: {
@@ -42,20 +42,19 @@ Students.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    level: {
-        type: DataTypes.STRING,
+    levelId: {
+        type: DataTypes.UUID,
         allowNull: false
     },
-    libraray_no:{
-        type:DataTypes.STRING,
-        allowNull:false
-    }
 },
     {
         sequelize
     });
 
 Students.belongsTo(Level, { foreignKey: 'levelId' });
+
+
+Students.sync();
 
 
 
