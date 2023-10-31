@@ -1,6 +1,6 @@
 
 
-export interface Author {
-    id:string;
+export interface AuthorAttributes {
+    id?:string;
     name:string;
 }

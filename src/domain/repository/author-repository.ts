@@ -1,42 +1,27 @@
 import { Author } from "../entities/Author";
+import { AuthorAttributes } from "../interfaces/Author";
 
 export class AuthorRepository {
-    async createAuthor(name: string): Promise<Author> {
-        return Author.create({ name });
+    async createAuthor(name: string): Promise<AuthorAttributes> {
+        const author = await Author.create({name})
+        return author.toJSON() as AuthorAttributes;
     }
 
-    async getAllAuthor(): Promise<Author[]> {
+
+    async getAllAuthor(): Promise<AuthorAttributes[]> {
         return Author.findAll();
     }
 
-    async updateAuthor(id: string, name: string): Promise<number> {
-        const [affectedRowCount] = await Author.update({ name }, {
-          where: { id },
+    async updateAuthor(id: string, name: string): Promise<AuthorAttributes | null> {
+        await Author.update({ name }, {
+            where: { id }
         });
-      
-        if (affectedRowCount === 0) {
-          throw new Error('Author not found');
-        }
-      
-        return affectedRowCount;
-      }
-      
+        return Author.findByPk(id);
+    }
 
-
-      async deleteAuthor(id: string): Promise<number> {
-        const deletedRowCount = await Author.destroy({
-          where: { id },
+    async deleteAuthor(id: string) {
+        return Author.destroy({
+            where: { id }
         });
-      
-        if (deletedRowCount === 0) {
-          throw new Error('Author not found');
-        }
-      
-        return deletedRowCount;
-      }
-      
-
-
+    }
 }
-
-

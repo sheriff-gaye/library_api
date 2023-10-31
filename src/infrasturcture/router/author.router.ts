@@ -37,13 +37,14 @@ router.delete('/authors/:id', async (req, res) => {
 });
 
 
-router.put('/authors/:id', async (req, res) => {
+router.patch('/authors/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const { name } = req.body; 
 
     const updatedAuthor = await authorService.updateAuthor(id, name);
     res.status(200).json(updatedAuthor);
+    
   } catch (error) {
    
     res.status(500).json({ error: 'Error in Updating Author' });

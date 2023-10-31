@@ -1,35 +1,26 @@
 import { Author } from '../entities/Author';
+import { AuthorAttributes } from '../interfaces/Author';
 import { AuthorRepository } from '../repository/author-repository';
 
 const authorRepository = new AuthorRepository();
 
 export class AuthorService {
-  static getAllAuthors() {
-      throw new Error('Method not implemented.');
-  }
-  async createAuthor(name: string): Promise<Author> {
+  async createAuthor(name: string): Promise<AuthorAttributes> {
     return authorRepository.createAuthor(name);
   }
 
-  async getAllAuthor(): Promise<Author[]> {
+  async getAllAuthor(): Promise<AuthorAttributes[]> {
     return authorRepository.getAllAuthor();
   }
 
-  async updateAuthor(id: string, name: string): Promise<void> {
-    const affectedRows = await authorRepository.updateAuthor(id, name);
-  
-    if (affectedRows === 0) {
-      throw new Error('Author not found');
-    }
+  async updateAuthor(id: string, name: string) {
+    return  authorRepository.updateAuthor(id, name);
 
   }
   
-  async deleteAuthor(id: string): Promise<void> {
-    const deletedCount = await authorRepository.deleteAuthor(id);
-  
-    if (deletedCount === 0) {
-      throw new Error('Author not found');
-    }
+  async deleteAuthor(id: string) {
+    return  authorRepository.deleteAuthor(id);
+
   }
   
   

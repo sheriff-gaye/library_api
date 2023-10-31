@@ -1,9 +1,12 @@
 import { DataTypes, Model, UUIDV4 } from "sequelize";
 import sequelize from '../../../connection';
-import { Author as AuthorInterface } from '../interfaces/Author';
+import { AuthorAttributes } from "../interfaces/Author";
 
 
-class Author extends Model {
+class Author extends Model<AuthorAttributes> implements AuthorAttributes {
+    
+    public id!: string;
+    public name!: string;
 
 }
 Author.init({
