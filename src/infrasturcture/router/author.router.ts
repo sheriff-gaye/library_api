@@ -26,14 +26,26 @@ router.get('/authors', async (req, res) => {
 
 export default router;
 
-// AuthorRouter.ts
 router.delete('/authors/:id', async (req, res) => {
   try {
     const { id } = req.params;
     await authorService.deleteAuthor(id);
     res.json({ message: "Author with ID  has been deleted" });
   } catch (err) {
-    console.error(err);
     res.json({ error: 'Author not found' });
+  }
+});
+
+
+router.put('/authors/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { name } = req.body; 
+
+    const updatedAuthor = await authorService.updateAuthor(id, name);
+    res.status(200).json(updatedAuthor);
+  } catch (error) {
+   
+    res.status(500).json({ error: 'Error in Updating Author' });
   }
 });

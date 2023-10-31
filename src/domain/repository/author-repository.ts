@@ -9,12 +9,32 @@ export class AuthorRepository {
         return Author.findAll();
     }
 
-
-    async deleteAuthor(id: string): Promise<void> {
-        await Author.destroy({
-            where: { id },
+    async updateAuthor(id: string, name: string): Promise<number> {
+        const [affectedRowCount] = await Author.update({ name }, {
+          where: { id },
         });
-    }
+      
+        if (affectedRowCount === 0) {
+          throw new Error('Author not found');
+        }
+      
+        return affectedRowCount;
+      }
+      
+
+
+      async deleteAuthor(id: string): Promise<number> {
+        const deletedRowCount = await Author.destroy({
+          where: { id },
+        });
+      
+        if (deletedRowCount === 0) {
+          throw new Error('Author not found');
+        }
+      
+        return deletedRowCount;
+      }
+      
 
 
 }

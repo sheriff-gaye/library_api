@@ -15,10 +15,22 @@ export class AuthorService {
     return authorRepository.getAllAuthor();
   }
 
+  async updateAuthor(id: string, name: string): Promise<void> {
+    const affectedRows = await authorRepository.updateAuthor(id, name);
+  
+    if (affectedRows === 0) {
+      throw new Error('Author not found');
+    }
 
-async deleteAuthor(id: string): Promise<void> {
-    await authorRepository.deleteAuthor(id);
-}
-
+  }
+  
+  async deleteAuthor(id: string): Promise<void> {
+    const deletedCount = await authorRepository.deleteAuthor(id);
+  
+    if (deletedCount === 0) {
+      throw new Error('Author not found');
+    }
+  }
+  
   
 }
