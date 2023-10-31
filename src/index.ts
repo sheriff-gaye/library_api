@@ -4,7 +4,8 @@ import bodyParser from "body-parser"
 import cookieParser from "cookie-parser"
 import cors from 'cors'
 import compression from "compression";
-import routes from './routes/routes'
+import categoryroutes from '../src/infrasturcture/router/category.router'
+
 
 
 const app = express();
@@ -14,7 +15,7 @@ app.use(cors());
 app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use('/',routes);
+app.use('/',categoryroutes );
 
 
 const server = http.createServer(app);

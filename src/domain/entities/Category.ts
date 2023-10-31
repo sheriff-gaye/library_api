@@ -1,29 +1,28 @@
-import { DataTypes, Model, UUIDV1 } from 'sequelize';
-import Book from './Book';
+import { DataTypes, Model, UUIDV4 } from 'sequelize';
 import sequelize from '../../../connection';
 
-
 class Category extends Model {
-    [x: string]: any;
+  
 }
 
-Category.init({
+Category.init(
+  {
     id: {
-        type: DataTypes.UUID,
-        primaryKey: true,
-        defaultValue: UUIDV1,
+      type: DataTypes.UUID, 
+      primaryKey:true,
+      defaultValue:UUIDV4
     },
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false,
+    fullname: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-}, {
-    sequelize
-});
-
-Category.hasMany(Book, { foreignKey: 'categoryId' });
-
+  },
+  {
+    sequelize,
+    modelName: 'Category',
+  }
+);
 
 Category.sync();
 
-export default Category;
+export { Category };

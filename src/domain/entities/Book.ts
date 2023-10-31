@@ -1,4 +1,4 @@
-import { DataTypes, Model, Optional, UUID, UUIDV1 } from 'sequelize';
+import { DataTypes, Model, UUIDV1 } from 'sequelize';
 import sequelize from '../../../connection';
 
 class Book extends Model {
