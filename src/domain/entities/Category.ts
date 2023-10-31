@@ -1,6 +1,7 @@
 import { DataTypes, Model, UUIDV1 } from 'sequelize';
-import sequelize from '../../connection';
-import Books from './Books';
+import Book from './Book';
+import sequelize from '../../../connection';
+
 
 class Category extends Model {
     [x: string]: any;
@@ -20,7 +21,7 @@ Category.init({
     sequelize
 });
 
-// Category.hasMany(Books, { foreignKey: 'categoryId' });
+Category.hasMany(Book, { foreignKey: 'categoryId' });
 
 
 Category.sync();

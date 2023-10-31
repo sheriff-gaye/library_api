@@ -1,5 +1,5 @@
 import { DataTypes, Model, STRING, UUIDV1 } from "sequelize";
-import sequelize from '../../connection';
+import sequelize from "../../../connection";
 
 class Level extends Model {
 

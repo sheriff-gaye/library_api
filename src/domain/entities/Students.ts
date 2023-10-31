@@ -1,6 +1,6 @@
 import { DataTypes, Model, UUIDV1 } from "sequelize";
-import sequelize from '../../connection';
 import Level from "./Level";
+import sequelize from "../../../connection";
 
 
 class Students extends Model {

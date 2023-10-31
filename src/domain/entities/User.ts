@@ -1,5 +1,5 @@
 import { DataTypes, Model, UUID, UUIDV1 } from 'sequelize';
-import sequelize from '../../connection';
+import sequelize from '../../../connection';
 
 class User extends Model {
     [x: string]: any;
