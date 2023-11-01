@@ -4,10 +4,7 @@ import bodyParser from "body-parser"
 import cookieParser from "cookie-parser"
 import cors from 'cors'
 import compression from "compression";
-import categoryroutes from '../src/infrasturcture/router/category.router'
-import authorroutes from '../src/infrasturcture/router/author.router'
-
-
+import { authorRouter } from './infrastructure/router/author.router';
 
 
 const app = express();
@@ -19,13 +16,12 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 
-app.use('/',categoryroutes );
-app.use('/',authorroutes)
 
-
+app.use('/', authorRouter);
 
 
 const server = http.createServer(app);
+
 
 const port=process.env.PORT|| 8080
 

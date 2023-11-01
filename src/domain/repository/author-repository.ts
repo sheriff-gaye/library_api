@@ -1,10 +1,10 @@
-// AuthorRepository.ts
-import { Author } from '../entities/Author';
+import { Author } from "../entities/author-entity";
 
 export interface AuthorRepository {
-  create(author: Author): Promise<Author>;
-  update(author: Author): Promise<Author | null>;
-  delete(id: string): Promise<boolean>;
-  getById(id: string): Promise<Author | null>;
+  create(authorData: Partial<Author>): Promise<Author>;
+  findById(id: number): Promise<Author | null>;
+  update(author: Author): Promise<Author>;
+  delete(id: number): Promise<void>;
   getAll(): Promise<Author[]>;
+  
 }

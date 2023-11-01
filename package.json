@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "start": "ts-node ./src/index.ts"
+    "start": "nodemon ./src/server.ts"
   },
   "keywords": [],
   "author": "",
