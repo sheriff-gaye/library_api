@@ -1,7 +1,11 @@
 import { DataTypes, Model, UUIDV4 } from 'sequelize';
 import sequelize from '../../../connection';
+import { CategoryAttributes } from '../interfaces/Categories';
 
-class Category extends Model {
+class Category extends Model <CategoryAttributes> implements CategoryAttributes {
+    
+    public id!:string;
+    public fullname!:string;
   
 }
 

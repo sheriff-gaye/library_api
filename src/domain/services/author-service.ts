@@ -1,4 +1,3 @@
-import { Author } from '../entities/Author';
 import { AuthorAttributes } from '../interfaces/Author';
 import { AuthorRepository } from '../repository/author-repository';
 
