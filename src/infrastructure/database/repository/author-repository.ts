@@ -1,24 +1,35 @@
-import { AuthorRepository } from "../../../domain/repository/author-repository";
 import { Author } from '../../../domain/entities/author-entity';
-import { AuthorModel } from "../model/author-model";
+import { AuthorRepository } from '../../../domain/repository/author-repository';
+import { AuthorModel } from '../model/author-model';
 
 export class AuthorRepositoryImpl implements AuthorRepository {
-  update(author: Author): Promise<Author> {
-    throw new Error("Method not implemented.");
-  }
-  
-  async create(authorData:any) {
+  async create(authorData: Partial<Author>): Promise<Author> {
     const createdAuthor = await AuthorModel.create(authorData);
-    return createdAuthor as unknown as Author;
+    return new Author(createdAuthor.id, createdAuthor.firstName, createdAuthor.lastName);
   }
 
-  async findById(id: number): Promise<Author | null> {
+  async findById(id: string): Promise<Author | null> {
     const author = await AuthorModel.findByPk(id);
-    return author ? author.toJSON() as unknown as Author : null;
+    if (!author) return null;
+    return new Author(author.id, author.firstName, author.lastName);
   }
 
+  async update(author: Author): Promise<Author> {
+    const existingAuthor = await AuthorModel.findByPk(author.id);
 
-  async delete(id: number): Promise<void> {
+    if (!existingAuthor) {
+      throw new Error('Author not found');
+    }
+
+    existingAuthor.firstName = author.firstName;
+    existingAuthor.lastName = author.lastName;
+
+    await existingAuthor.save();
+
+    return new Author(existingAuthor.id, existingAuthor.firstName, existingAuthor.lastName);
+  }
+
+  async delete(id: string): Promise<void> {
     const deletedRowsCount = await AuthorModel.destroy({
       where: { id },
     });
@@ -30,6 +41,6 @@ export class AuthorRepositoryImpl implements AuthorRepository {
 
   async getAll(): Promise<Author[]> {
     const authors = await AuthorModel.findAll();
-    return authors.map((author) => author.toJSON() as unknown as Author);
+    return authors.map(author => new Author(author.id, author.firstName, author.lastName));
   }
 }

@@ -1,22 +1,11 @@
 import { DataTypes, Model, Optional, UUIDV4 } from "sequelize";
 import sequelize from "../../config/databaseConfig";
+import { AuthorAttributes } from '../../../application/interface/author-interface';
 
-interface AuthorAttributes {
-  id?: string;
-  firstName: string;
-  lastName: string;
-
-}
-
-interface AuthorCreationAttributes extends Optional<AuthorAttributes, 'id'> {}
-
-class AuthorModel extends Model<AuthorAttributes, AuthorCreationAttributes> implements AuthorAttributes {
+class AuthorModel extends Model<AuthorAttributes> implements AuthorAttributes {
   public id!: string;
   public firstName!: string;
   public lastName!: string;
- 
-
-
 }
 
 AuthorModel.init(
