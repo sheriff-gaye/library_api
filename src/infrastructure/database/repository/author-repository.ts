@@ -9,32 +9,23 @@ export class AuthorRepositoryImpl implements AuthorRepository {
   }
 
   async findById(id: string): Promise<Author | null> {
-    const author = await AuthorModel.findByPk(id);
-    return author ? author.toJSON() as Author : null;
+    return await AuthorModel.findByPk(id);
+   
     
   }
-  async update(author: Author): Promise<Author> {
+  async update(author: Author): Promise<Author | null> {
     const existingAuthor = await AuthorModel.findByPk(author.id);
   
     if (!existingAuthor) {
-      throw new Error('Author not found');
-    }
-  
+      return null
+    }  
     await existingAuthor.update(author);
+
+    return  await AuthorModel.findByPk(author.id) as Author;
   
-    // Fetch the updated author again and return it
-    const updatedAuthor = await AuthorModel.findByPk(author.id);
-  
-    if (!updatedAuthor) {
-      throw new Error('Updated author not found');
-    }
-  
-    return updatedAuthor as Author;
   }
   
   
-  
-
   async delete(id: string): Promise<void> {
     const deletedRowsCount = await AuthorModel.destroy({
       where: { id },
