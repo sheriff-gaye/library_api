@@ -1,4 +1,3 @@
-
 export class Author {
   constructor(
     public  id: string,
@@ -6,14 +5,6 @@ export class Author {
     public  lastName: string,
   
   ) {}
-
-  getId(): string {
-    return this.id;
-  }
-
-  getFullName(): string {
-    return `${this.firstName} ${this.lastName}`;
-  }
 
   
 }
