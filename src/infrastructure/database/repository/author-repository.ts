@@ -9,8 +9,8 @@ export class AuthorRepositoryImpl implements AuthorRepository {
   }
 
   async findById(id: string): Promise<Author | null> {
-    return await AuthorModel.findByPk(id);
-   
+    const author = await AuthorModel.findByPk(id);
+    return author ? author.toJSON() as Author : null;
     
   }
   async update(author: Author): Promise<Author | null> {

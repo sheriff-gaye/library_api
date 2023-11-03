@@ -1,7 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import { CategoryAttributs } from "../../../application/interface/category-interface";
 import sequelize from '../../config/databaseConfig';
-import { AuthorModel } from "./author-model";
 
 class CategoryModel extends Model<CategoryAttributs> implements CategoryAttributs {
     public id!: string;

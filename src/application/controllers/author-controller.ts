@@ -1,9 +1,7 @@
 import  { Request, Response } from 'express';
-
 import { CreateAuthorUseCase } from "../../application/use-cases/Author/create-use-case";
 import { GetAllAuthorsUseCase } from "../../application/use-cases/Author/get-all-use-case";
 import { DeleteAuthorUseCase } from '../../application/use-cases/Author/delete-use-case';
-import { Author } from '../../domain/entities/author-entity';
 import { UpdateAuthorUseCase } from '../../application/use-cases/Author/update-use-case';
 import { AuthorRepositoryImpl } from "../../infrastructure/database/repository/author-repository";
 

@@ -7,7 +7,8 @@ import { CategoryModel } from '../model/category-model';
 
 export class CategoryRepositoryImpl implements CategoryRepository {
     async findById(id: string): Promise<Category | null> {
-        return await CategoryModel.findByPk(id);
+        const category= await CategoryModel.findByPk(id);
+        return category?.toJSON() as Category
     }
     async getAll(): Promise<Category[]> {
         return  await CategoryModel.findAll();
@@ -18,14 +19,15 @@ export class CategoryRepositoryImpl implements CategoryRepository {
     }
     
     async update(category: Category): Promise<Category | null> {
-       const existingCategory=await CategoryModel.findByPk(category.id)
-       if(!existingCategory){
-        return null;
+        const existingCategory = await CategoryModel.findByPk(category.id);
+      
+        if (!existingCategory) {
+          return null;
         }
-        await existingCategory.update(category);
-        return await CategoryModel.findByPk(category.id) as Category;
-   
-    }
+      
+        return await existingCategory.update(category);
+      }
+      
     async delete(id: string): Promise<void> {
         await CategoryModel.destroy({
             where:{id}
