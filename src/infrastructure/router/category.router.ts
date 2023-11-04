@@ -1,11 +1,19 @@
 import express from 'express';
-import { createCategory, deleteCategory, getCategory, updateCategory } from '../../application/controllers/category-controller';
+import { CreateCategoryController } from '../../application/controllers/category/create-controllerr';
+import { UpadateCategoryController } from '../../application/controllers/category/update-controller';
+import { DeleteCategoryController } from '../../application/controllers/category/delete-controller';
+import { GetAllCategoryController } from '../../application/controllers/category/getAll-controller';
 
 const categoryRouter = express.Router();
 
-categoryRouter.post('/category',createCategory);
-categoryRouter.get('/category',getCategory );
-categoryRouter.delete('/category/:id',deleteCategory);
-categoryRouter.patch('/category/:id',updateCategory)
+const createCategoryController=new CreateCategoryController();
+const updateCategoryController=new UpadateCategoryController();
+const deleteCategoryController=new DeleteCategoryController();
+const getAllCategoryController=new GetAllCategoryController();
+
+categoryRouter.post('/category',(req,res)=>createCategoryController.createCategory(req,res));
+categoryRouter.get('/category', (req,res)=>getAllCategoryController.getCategory(req,res));
+categoryRouter.delete('/category/:id',(req,res)=>deleteCategoryController.deleteCategory(req,res));
+categoryRouter.patch('/category/:id',(req,res)=>updateCategoryController.updateCategory(req,res))
 
 export default categoryRouter;

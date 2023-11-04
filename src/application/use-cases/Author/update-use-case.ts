@@ -15,8 +15,8 @@ export class UpdateAuthorUseCase {
     existingAuthor.firstName = firstName;
     existingAuthor.lastName= lastName;
 
-   const updatedAuthor= await this.authorRepository.update(existingAuthor);
+   return await this.authorRepository.update(existingAuthor as Author);
 
-   return updatedAuthor;
+   
   }
 }

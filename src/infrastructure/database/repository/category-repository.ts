@@ -15,6 +15,12 @@ export class CategoryRepositoryImpl implements CategoryRepository {
     }
 
     async create(categoryData: Partial<Category>): Promise<Category> {
+        
+        let existing = await CategoryModel.findOne({where:{
+            name: categoryData.name
+        }});
+        if (existing) throw new Error('Category already exists');
+
         return await CategoryModel.create(categoryData)
     }
     

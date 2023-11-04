@@ -6,6 +6,17 @@ import { LevelModel } from "../model/level-model";
 export class LevelRepositoryImpl implements LevelRepository{
 
     async create(levelData: Partial<Level>): Promise<Level> {
+        const existingLevel = await LevelModel.findOne({
+            where: {
+                name: levelData.name,
+                code: levelData.code
+            
+            },
+          });
+        
+          if (existingLevel) {
+            throw new Error('Level with the same name or code already exists');
+          }
         return  await LevelModel.create(levelData);
       }
       
