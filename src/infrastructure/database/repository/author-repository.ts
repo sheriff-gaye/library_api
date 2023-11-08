@@ -27,13 +27,10 @@ export class AuthorRepositoryImpl implements AuthorRepository {
   
   
   async delete(id: string): Promise<void> {
-    const deletedRowsCount = await AuthorModel.destroy({
+    await AuthorModel.destroy({
       where: { id },
     });
 
-    if (!deletedRowsCount) {
-      throw new Error('Author not found');
-    }
   }
 
   async getAll(): Promise<Author[]> {

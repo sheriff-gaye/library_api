@@ -5,7 +5,7 @@ export class DeleteAuthorUseCase {
         private authorRepository: AuthorRepository
     ) { }
     async execute(id: string) {
-        await this.authorRepository.delete(id);
+        return await this.authorRepository.delete(id);
     }
 
 }

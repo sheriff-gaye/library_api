@@ -1,4 +1,23 @@
 
+export interface StudentsAttributes{
+    id: string;
+    firstname: string;
+    lastname: string;
+    email: string;
+    phone:string;
+    gender:string;
+    dob:Date
+    levelId:string
+    studentId:string
+
+}
+
+
+
+export class Student {
+}
+
+
 export class Students{
     constructor(
         public id: string,
@@ -8,8 +27,8 @@ export class Students{
         public phone:number,
         public gender:boolean,
         public dob:Date,
-        public level:string,
-        public student_id:string
+        public levelId:string,
+        public studentId:string
         
     ){}
 }
