@@ -12,16 +12,17 @@ export class CreateBooksController {
 
     async createBooks(req: Request, res: Response) {
         try {
-            const { title, description, publisher, publish_date, copies, category, author, authorId, categoryId } = req.body;
+            const { title, description, publisher, publish_date, copies, authorId, categoryId } = req.body;
             if (!authorId) {
                 res.json({ message: "Author is required" });
             }
             if (!categoryId) {
                 res.json({ message: "Category is required" })
             }
-            return await this.createBooksUseCase.execute(title, description, publisher, publish_date, copies);
+            const newBook = await this.createBooksUseCase.execute(title, description, publisher, publish_date, copies, authorId, categoryId);
+            res.json(newBook);
         } catch (error) {
-            res.json({ message: "Book with this title Already Exist" });
+            res.json({ message: "Something went Wrong" });
         }
     }
 }

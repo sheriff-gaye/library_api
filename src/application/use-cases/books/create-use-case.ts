@@ -10,6 +10,8 @@ export class CreateBooksUseCase {
         publisher: string,
         publish_date: Date,
         copies: number,
+        authorId: string,
+        categoryId: string
         
     ): Promise<Books> {
         const booksData: Partial<Books> = {
@@ -18,8 +20,11 @@ export class CreateBooksUseCase {
             copies,
             publisher,
             publish_date,
+            authorId, 
+            categoryId, 
         };
 
-        return this.booksRepository.create(booksData as Books);
+        const newBook= this.booksRepository.create(booksData as Books);
+        return newBook;
     }
 }

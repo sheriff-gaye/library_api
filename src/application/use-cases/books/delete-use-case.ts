@@ -1,7 +1,7 @@
 import { BooksRepository } from "../../../domain/repository/books-repository";
 
 
-export class DeleteBoksUseCase{
+export class DeleteBooksUseCase{
 
     constructor(
         private booksRepository:BooksRepository

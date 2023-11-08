@@ -5,6 +5,8 @@ export interface BookAttributes{
     publisher?:string;
     publish_date?:Date;
     copies?:number
+    authorId?:string;
+    categoryId?:string
 }
 
 
@@ -15,7 +17,9 @@ export class Books{
         public description:Text,
         public publish_date:Date,
         public publisher:string,
-        public copies:number
+        public copies:number,
+        public authorId:string,
+        public categoryId:string
         ){}
 
 }

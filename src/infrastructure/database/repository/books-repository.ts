@@ -1,6 +1,8 @@
 import { Books } from '../../../domain/entities/book-entity';
 import { BooksRepository } from '../../../domain/repository/books-repository';
+import { AuthorModel } from '../model/author-model';
 import { BooksModel } from '../model/books-model';
+import { CategoryModel } from '../model/category-model';
 
 export class BooksRepositoryImpl implements BooksRepository {
     async getAll(): Promise<Books[]> {
@@ -17,6 +19,15 @@ export class BooksRepositoryImpl implements BooksRepository {
           if (existingBook){
             throw new Error('This book already exists');
         }
+        const author = await AuthorModel.findByPk(data.authorId);
+    if (!author) {
+        throw new Error('Author with the specified ID does not exist');
+    }
+
+    const category = await CategoryModel.findByPk(data.categoryId);
+    if (!category) {
+        throw new Error('Category with the specified ID does not exist');
+    }
         const createdBook = await BooksModel.create(data);
         return createdBook.toJSON() as Books;
     }

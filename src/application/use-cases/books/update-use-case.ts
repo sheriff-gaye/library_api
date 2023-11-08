@@ -12,18 +12,30 @@ export class UpdateBooksUseCase{
         id:string,
         title: string,
         description: Text,
-        category: string,
         publisher: string,
         publish_date: Date,
         copies: number,
-        author: string
+        authorId: string,
+        categoryId: string,
+        
     ){
         const existingBook=await this.booksRepository.findById(id);
         if(!existingBook){
             return null
         }
-        return await this.booksRepository.update({
-            ...existingBook,})
+        existingBook.title=title;
+        existingBook.description=description
+        existingBook.publisher=publisher
+        existingBook.publish_date=publish_date;
+        existingBook.copies=copies;
+        existingBook.authorId=authorId;
+        existingBook.categoryId=categoryId;
+        
+       
+        
+       
+        
+        return await this.booksRepository.update(existingBook)
             
 
 
