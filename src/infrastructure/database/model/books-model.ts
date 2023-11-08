@@ -27,7 +27,7 @@ BooksModel.init(
         description: {
             type: DataTypes.TEXT
         },
-       
+    
         publisher: {
             type: DataTypes.STRING,
         },
@@ -44,7 +44,7 @@ BooksModel.init(
 );
 
 BooksModel.belongsTo(AuthorModel, { foreignKey: 'authorId' });
-BooksModel.belongsTo(CategoryModel, { foreignKey: 'CategoryId' });
+BooksModel.belongsTo(CategoryModel, { foreignKey: 'categoryId' });
 
 BooksModel.sync();
 

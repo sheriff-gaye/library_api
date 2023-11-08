@@ -9,6 +9,14 @@ export class BooksRepositoryImpl implements BooksRepository {
     }
 
     async create(data: Partial<Books>): Promise<Books> {
+        const existingBook = await BooksModel.findOne({
+            where: {
+                title: data.title,
+            },
+          });
+          if (existingBook){
+            throw new Error('This book already exists');
+        }
         const createdBook = await BooksModel.create(data);
         return createdBook.toJSON() as Books;
     }
