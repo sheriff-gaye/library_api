@@ -1,14 +1,14 @@
 
 export interface StudentsAttributes{
     id?: string;
-    firstname: string;
-    lastname: string;
-    email: string;
-    phone:string;
-    gender:string;
-    dob:Date
-    levelId:string
-    studentId:string
+    firstname?: string;
+    lastname?: string;
+    email?: string;
+    phone?:string;
+    gender?:string;
+    dob?:Date
+    levelId?:string
+    studentId?:string
 
 }
 
@@ -24,8 +24,8 @@ export class Students{
         public firstname:string,
         public lastname:string,
         public email:string,
-        public phone:number,
-        public gender:boolean,
+        public phone:string,
+        public gender:string,
         public dob:Date,
         public levelId:string,
         public studentId:string

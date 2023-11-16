@@ -1,6 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from "../../config/databaseConfig";
 import { StudentsAttributes } from '../../../domain/entities/student-entity';
+import { LevelModel } from './level-model';
 
 
 class StudentModel extends Model<StudentsAttributes> implements StudentsAttributes {
@@ -46,11 +47,11 @@ StudentModel.init({
         allowNull: false,
     },
     levelId: {
-        type: DataTypes.DATE,
+        type: DataTypes.UUID,
         allowNull: false,
     },
     studentId: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
         allowNull: false,
     }
 }, {
@@ -58,5 +59,7 @@ StudentModel.init({
 })
 
 StudentModel.sync();
+
+StudentModel.hasOne(LevelModel,{foreignKey:"levelId"})
 
 export {StudentModel}

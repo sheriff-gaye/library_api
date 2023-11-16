@@ -1,23 +1,38 @@
-import { Students } from "../../../domain/entities/student-entity";
+import {  Students } from "../../../domain/entities/student-entity";
 import { StudentsRepository } from "../../../domain/repository/students-repository";
 import { StudentModel } from "../model/student-model";
 
 
 export class StudentRepositoryImpl implements StudentsRepository{
-    getAll(): Promise<Students[]> {
+
+    async getAll(): Promise<Students[]> {
         return await StudentModel.findAll();
     }
-    create(data: Partial<Students>): Promise<Students> {
-        throw new Error("Method not implemented.");
+    async create(data: Partial<Students>): Promise<Students> {
+        let existingStudent=await StudentModel.findOne({
+            where:{email:data.email}
+        })
+        if (existingStudent){
+             throw new Error('Email already in use')
+         }
+        return  await StudentModel.create(data);
+        
     }
-    update(studentData: Partial<Students>): Promise<Students | null> {
-        throw new Error("Method not implemented.");
+     async update(studentData: Partial<Students>): Promise<Students | null> {
+        const existingStudents=await StudentModel.findByPk(studentData.id);
+        if (!existingStudents) {
+           return null;
+       }
+       return await existingStudents.update(studentData);
     }
-    delete(id: string): Promise<void> {
-        throw new Error("Method not implemented.");
+    async delete(id: string): Promise<void> {
+        await StudentModel.destroy({
+            where:{id}
+        })
     }
-    findById(id: string): Promise<Students | null> {
-        throw new Error("Method not implemented.");
+    async findById(id: string): Promise<Students | null> {
+        const student=await StudentModel.findByPk(id);
+        return student?.toJSON() as Students
     }
 
 }
