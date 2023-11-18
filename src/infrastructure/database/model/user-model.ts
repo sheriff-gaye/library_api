@@ -4,6 +4,7 @@ import { UserAttributes } from '../../../domain/entities/users.entity';
 
 
 class UserModel extends Model<UserAttributes> implements UserAttributes {
+    [x: string]: any;
     id!: string;
     fullName!: string ;
     email!: string;
@@ -14,7 +15,7 @@ UserModel.init({
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
-        defaultValue: DataTypes.UUIDV4
+        defaultValue: DataTypes.UUIDV4,
     },
     fullName: {
         type: DataTypes.STRING,

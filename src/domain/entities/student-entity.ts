@@ -6,19 +6,15 @@ export interface StudentsAttributes{
     email?: string;
     phone?:string;
     gender?:string;
-    dob?:Date
-    levelId?:string
-    studentId?:string
+    dob?:Date;
+    levelId?:string;
+    studentId?:string;
 
 }
 
 
 
-export class Student {
-}
-
-
-export class Students{
+export class Students {
     constructor(
         public id: string,
         public firstname:string,

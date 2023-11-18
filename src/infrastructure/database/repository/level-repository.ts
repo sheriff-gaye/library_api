@@ -8,8 +8,7 @@ export class LevelRepositoryImpl implements LevelRepository{
     async create(levelData: Partial<Level>): Promise<Level> {
         const existingLevel = await LevelModel.findOne({
             where: {
-                name: levelData.name,
-                code: levelData.code
+                name: levelData.name
             
             },
           });

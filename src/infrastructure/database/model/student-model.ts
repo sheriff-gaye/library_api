@@ -24,27 +24,27 @@ StudentModel.init({
     },
     firstname: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     lastname: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     phone: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     gender: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     dob: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: true,
     },
     levelId: {
         type: DataTypes.UUID,
@@ -59,7 +59,6 @@ StudentModel.init({
 })
 
 StudentModel.sync();
-
-StudentModel.hasOne(LevelModel,{foreignKey:"levelId"})
+StudentModel.belongsTo(LevelModel, { foreignKey: 'levelId' });
 
 export {StudentModel}

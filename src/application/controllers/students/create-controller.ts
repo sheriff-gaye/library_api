@@ -12,11 +12,14 @@ export class CreateStudentController {
 
     async createStudent(req: Request, res: Response) {
         try {
-            const {firstname,lastname,email,dob,gender,phone,levelId, studentId} = req.body;
-            const newStudent = await this.createStudentUseCase.execute(firstname,lastname,email,dob,phone,gender,levelId,studentId);
+            const {firstname,lastname,email,phone,gender,dob,levelId, studentId} = req.body;
+            if(!levelId){
+                res.json({message:"Level is Required"});
+            }
+            const newStudent = await this.createStudentUseCase.execute(firstname,lastname,email,phone,gender,dob, levelId,studentId);
             res.status(200).json(newStudent);  
         } catch (error) {
-            res.status(500).json({ message: "Something went wrong",error });
+            res.status(500).json({ message: "Something went wrong" });
         }
     }
 }
