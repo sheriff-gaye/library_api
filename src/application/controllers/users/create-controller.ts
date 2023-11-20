@@ -1,4 +1,4 @@
-import { UserRepositoryImpl } from "../../../infrastructure/database/repository/user-repository";
+import { UserRepositoryImpl } from "../../../infrastructure/repository/user-repository";
 import { CreateUserUseCase } from "../../use-cases/Users/create-use-case";
 import { Request, Response } from 'express';
 

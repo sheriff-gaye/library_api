@@ -1,7 +1,7 @@
 
 import { Request, Response } from 'express';
 import { GetAllAuthorsUseCase } from "../../use-cases/Author/get-all-use-case";
-import { AuthorRepositoryImpl } from "../../../infrastructure/database/repository/author-repository";
+import { AuthorRepositoryImpl } from "../../../infrastructure/repository/author-repository";
 import { GetAllCatgoriesUseCases } from '../../use-cases/Category/get-all-use-case';
 
 

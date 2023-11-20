@@ -1,7 +1,7 @@
-import { Author } from '../../../domain/entities/author-entity';
-import { Category } from '../../../domain/entities/category-entity';
-import { CategoryRepository } from '../../../domain/repository/category-repository';
-import { CategoryModel } from '../model/category-model';
+import { Author } from '../../domain/entities/author-entity';
+import { Category } from '../../domain/entities/category-entity';
+import { CategoryRepository } from '../../domain/repository/category-repository';
+import { CategoryModel } from '../database/model/category-model';
 
 
 

@@ -1,7 +1,7 @@
 
 import { Request, Response } from 'express';
 import { DeleteAuthorUseCase } from '../../use-cases/Author/delete-use-case';
-import { AuthorRepositoryImpl } from "../../../infrastructure/database/repository/author-repository";
+import { AuthorRepositoryImpl } from "../../../infrastructure/repository/author-repository";
 
 
 export class DeleteAuthorController {

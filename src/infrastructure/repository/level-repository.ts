@@ -1,6 +1,6 @@
-import { Level } from "../../../domain/entities/level-entity";
-import { LevelRepository } from "../../../domain/repository/level-repository";
-import { LevelModel } from "../model/level-model";
+import { Level } from "../../domain/entities/level-entity";
+import { LevelRepository } from "../../domain/repository/level-repository";
+import { LevelModel } from "../database/model/level-model";
 
 
 export class LevelRepositoryImpl implements LevelRepository{

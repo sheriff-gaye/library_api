@@ -1,8 +1,8 @@
-import { Books } from '../../../domain/entities/book-entity';
-import { BooksRepository } from '../../../domain/repository/books-repository';
-import { AuthorModel } from '../model/author-model';
-import { BooksModel } from '../model/books-model';
-import { CategoryModel } from '../model/category-model';
+import { Books } from '../../domain/entities/book-entity';
+import { BooksRepository } from '../../domain/repository/books-repository';
+import { AuthorModel } from '../database/model/author-model';
+import { BooksModel } from '../database/model/books-model';
+import { CategoryModel } from '../database/model/category-model';
 
 export class BooksRepositoryImpl implements BooksRepository {
     async getAll(): Promise<Books[]> {

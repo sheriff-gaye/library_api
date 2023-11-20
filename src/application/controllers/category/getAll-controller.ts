@@ -1,7 +1,7 @@
 
 import { Request, Response } from 'express';
 import { GetAllCatgoriesUseCases } from '../../use-cases/Category/get-all-use-case';
-import { CategoryRepositoryImpl } from '../../../infrastructure/database/repository/category-repository';
+import { CategoryRepositoryImpl } from '../../../infrastructure/repository/category-repository';
 
 export class GetAllCategoryController {
 

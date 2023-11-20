@@ -1,6 +1,6 @@
-import {  Students } from "../../../domain/entities/student-entity";
-import { StudentsRepository } from "../../../domain/repository/students-repository";
-import { StudentModel } from "../model/student-model";
+import {  Students } from "../../domain/entities/student-entity";
+import { StudentsRepository } from "../../domain/repository/students-repository";
+import { StudentModel } from "../database/model/student-model";
 
 
 export class StudentRepositoryImpl implements StudentsRepository{

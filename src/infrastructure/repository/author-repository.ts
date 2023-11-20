@@ -1,6 +1,6 @@
-import { Author } from "../../../domain/entities/author-entity";
-import { AuthorRepository } from "../../../domain/repository/author-repository";
-import { AuthorModel } from "../model/author-model";
+import { Author } from "../../domain/entities/author-entity";
+import { AuthorRepository } from "../../domain/repository/author-repository";
+import { AuthorModel } from "../database/model/author-model";
 
 export class AuthorRepositoryImpl implements AuthorRepository {
   async create(authorData: Partial<Author>): Promise<Author> {

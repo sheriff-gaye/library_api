@@ -1,7 +1,7 @@
 
 import { Request, Response } from 'express';
 import { CreateCategoryUseCase } from '../../use-cases/Category/create-use-case'; // Update the import
-import { CategoryRepositoryImpl } from '../../../infrastructure/database/repository/category-repository';
+import { CategoryRepositoryImpl } from '../../../infrastructure/repository/category-repository';
 
 
 export class CreateCategoryController {

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { UpdateAuthorUseCase } from '../../use-cases/Author/update-use-case';
-import { AuthorRepositoryImpl } from "../../../infrastructure/database/repository/author-repository";
+import { AuthorRepositoryImpl } from "../../../infrastructure/repository/author-repository";
 
 export class UpdateAuthorController {
     private updateAuthorUseCase: UpdateAuthorUseCase;

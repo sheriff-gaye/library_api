@@ -1,7 +1,7 @@
 
 import { Request, Response } from 'express';
 import { CreateLevelUseCase } from '../../use-cases/Level/create-use-case';
-import { LevelRepositoryImpl } from '../../../infrastructure/database/repository/level-repository';
+import { LevelRepositoryImpl } from '../../../infrastructure/repository/level-repository';
 
 
 export class CreateLevelController {

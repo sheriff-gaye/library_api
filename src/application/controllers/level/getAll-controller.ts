@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { GetAllLevelUseCase } from '../../use-cases/Level/get-all-use-case';
-import { LevelRepositoryImpl } from '../../../infrastructure/database/repository/level-repository';
+import { LevelRepositoryImpl } from '../../../infrastructure/repository/level-repository';
 
 
 export class GetAllLevelController {

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { BooksRepositoryImpl } from "../../../infrastructure/database/repository/books-repository";
+import { BooksRepositoryImpl } from "../../../infrastructure/repository/books-repository";
 import { CreateBooksUseCase } from "../../use-cases/books/create-use-case";
 
 export class CreateBooksController {

@@ -1,4 +1,4 @@
-import { BooksRepositoryImpl } from "../../../infrastructure/database/repository/books-repository";
+import { BooksRepositoryImpl } from "../../../infrastructure/repository/books-repository";
 import { DeleteBooksUseCase } from "../../use-cases/books/delete-use-case";
 import { Request, Response } from 'express';
 

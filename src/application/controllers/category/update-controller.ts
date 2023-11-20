@@ -1,6 +1,6 @@
 
 import { Request, Response } from 'express';
-import { CategoryRepositoryImpl } from '../../../infrastructure/database/repository/category-repository';
+import { CategoryRepositoryImpl } from '../../../infrastructure/repository/category-repository';
 import { UpdateCategoryUseCase } from '../../use-cases/Category/update-use-case';
 
 

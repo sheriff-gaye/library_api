@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { CategoryRepositoryImpl } from '../../../infrastructure/database/repository/category-repository';
+import { CategoryRepositoryImpl } from '../../../infrastructure/repository/category-repository';
 import { DeleteCategoryUseCase } from '../../use-cases/Category/delet-use-case';
 
 

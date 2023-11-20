@@ -1,4 +1,4 @@
-import { BooksRepositoryImpl } from "../../../infrastructure/database/repository/books-repository";
+import { BooksRepositoryImpl } from "../../../infrastructure/repository/books-repository";
 import { GetOneBooksUseCase } from "../../use-cases/books/get-one-use-case";
 import { Response,Request } from "express";
 

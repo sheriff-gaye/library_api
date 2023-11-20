@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { CreateAuthorUseCase } from "../../use-cases/Author/create-use-case";
-import { AuthorRepositoryImpl } from "../../../infrastructure/database/repository/author-repository";
+import { AuthorRepositoryImpl } from "../../../infrastructure/repository/author-repository";
 
 export class CreateAuthorController {
     private createAuthorUseCase: CreateAuthorUseCase;

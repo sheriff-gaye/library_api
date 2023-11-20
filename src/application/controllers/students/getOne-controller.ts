@@ -1,4 +1,4 @@
-import { StudentRepositoryImpl } from "../../../infrastructure/database/repository/students-repository";
+import { StudentRepositoryImpl } from "../../../infrastructure/repository/students-repository";
 import { GetOneStudentUseCase } from "../../use-cases/Students/get-one-ue-case";
 import { Response,Request } from "express";
 

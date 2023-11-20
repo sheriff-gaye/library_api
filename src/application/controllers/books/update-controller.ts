@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { UpdateBooksUseCase } from '../../use-cases/books/update-use-case';
-import { BooksRepositoryImpl } from '../../../infrastructure/database/repository/books-repository';
+import { BooksRepositoryImpl } from '../../../infrastructure/repository/books-repository';
 
 export class UpdateBooksController{
 

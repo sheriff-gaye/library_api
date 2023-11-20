@@ -1,6 +1,6 @@
-import { User, UserAttributes } from "../../../domain/entities/users.entity";
-import { UserRepository } from "../../../domain/repository/user-repository";
-import { UserModel } from "../model/user-model";
+import { User, UserAttributes } from "../../domain/entities/users.entity";
+import { UserRepository } from "../../domain/repository/user-repository";
+import { UserModel } from "../database/model/user-model";
 
 
 export class UserRepositoryImpl implements UserRepository {
@@ -16,14 +16,10 @@ export class UserRepositoryImpl implements UserRepository {
         }
 
         const user = new User(
-            data.id || '', 
-            data.fullName || '',
-            data.email || '',
-            data.password || ''
+            data.id || '', data.fullName || '', data.email || '', data.password || ''
         );
-        
 
-        user.setPassword(data.password || ''); // Hash the password
+        user.setPassword(data.password || '');
 
         await UserModel.create({
             id: user.id,
@@ -36,20 +32,31 @@ export class UserRepositoryImpl implements UserRepository {
     }
 
     async findById(id: string): Promise<User | null> {
-        const user=await UserModel.findByPk(id);
+        const user = await UserModel.findByPk(id);
         return user ? user.toJSON() as User : null
 
     }
-    update(updateData: User): Promise<User | null> {
-        throw new Error("Method not implemented.");
+    async update(updateData: UserAttributes): Promise<User | null> {
+        const user = await UserModel.findByPk(updateData.id);
+    
+        if (!user) {
+            return null;
+        }
+      
+         await user.update(updateData);
+
+        return user.toJSON() as User;
     }
-    delete(id: string): Promise<void> {
-        throw new Error("Method not implemented.");
+    
+    async delete(id: string): Promise<void> {
+        await UserModel.destroy({
+            where: { id }
+        });
     }
     async getAll(): Promise<User[]> {
         const users = await UserModel.findAll();
         return users.map(userModel => userModel.toJSON() as User);
     }
-    
+
 
 }

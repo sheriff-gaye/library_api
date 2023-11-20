@@ -1,6 +1,6 @@
 
 import { Request, Response } from 'express';
-import { LevelRepositoryImpl } from '../../../infrastructure/database/repository/level-repository';
+import { LevelRepositoryImpl } from '../../../infrastructure/repository/level-repository';
 import { UpdateLevelUseCase } from '../../use-cases/Level/update-use-case';
 
 export class UpdateLevelController{
