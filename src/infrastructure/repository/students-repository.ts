@@ -8,7 +8,7 @@ export class StudentRepositoryImpl implements StudentsRepository{
     async getAll(): Promise<Students[]> {
         return await StudentModel.findAll();
     }
-    async create(data: Partial<Students>): Promise<Students> {
+    async create(data: Students): Promise<Students> {
         let existingStudent=await StudentModel.findOne({
             where:{email:data.email}
         })
@@ -18,7 +18,7 @@ export class StudentRepositoryImpl implements StudentsRepository{
         return  await StudentModel.create(data);
         
     }
-     async update(studentData: Partial<Students>): Promise<Students | null> {
+     async update(studentData: Students): Promise<Students | null> {
         const existingStudents=await StudentModel.findByPk(studentData.id);
         if (!existingStudents) {
            return null;

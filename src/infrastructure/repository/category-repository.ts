@@ -31,7 +31,7 @@ export class CategoryRepositoryImpl implements CategoryRepository {
           return null;
         }
       
-        return await existingCategory.update(category);
+        return await existingCategory?.update(category);
       }
       
     async delete(id: string): Promise<void> {

@@ -9,9 +9,9 @@ export class UpdateUserUseCase {
         if (!user) {
             throw new Error("User Not Found");
         }
-
+        
         user.fullName = fullName;
-        user.email = email;
+        user.email = email;   
         user.setPassword(password);
 
         const updatedUser = await this.userRepository.update(user);

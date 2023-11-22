@@ -1,14 +1,14 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from "../../config/databaseConfig";
 import { UserAttributes } from '../../../domain/entities/users.entity';
-
+import bcrypt from 'bcrypt';
 
 class UserModel extends Model<UserAttributes> implements UserAttributes {
     [x: string]: any;
-    id!: string;
-    fullName!: string ;
-    email!: string;
-    password!: string;
+    public id!: string;
+    public fullName!: string;
+    public email!: string;
+    public password!: string;
 }
 
 UserModel.init({
@@ -31,8 +31,7 @@ UserModel.init({
     }
 }, {
     sequelize
-})
-
+});
 UserModel.sync();
 
-export {UserModel}
+export { UserModel };

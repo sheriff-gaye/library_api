@@ -3,8 +3,8 @@ import { Students } from "../entities/student-entity";
 
 export interface StudentsRepository {
     getAll(): Promise<Students[]>;
-    create(data: Partial<Students>): Promise<Students>;
-    update(studentData: Partial<Students>): Promise<Students | null>;
+    create(data: Students): Promise<Students>;
+    update(studentData: Students): Promise<Students | null>;
     delete(id: string): Promise<void>;
     findById(id: string): Promise<Students | null>
 

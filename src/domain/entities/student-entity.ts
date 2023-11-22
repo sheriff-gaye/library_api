@@ -12,8 +12,6 @@ export interface StudentsAttributes{
 
 }
 
-
-
 export class Students {
     constructor(
         public id: string,
