@@ -8,10 +8,12 @@ export class TokenService {
     return jwt.sign(payload, this.secret, { expiresIn: '1h' });
   }
 
-  static verifyToken(token: string): any {
+  static verifyToken(token: string) {
     try {
-      return jwt.verify(token, this.secret);
+      const tokenWithoutPrefix = token.replace('Bearer ', '');
+      return jwt.verify(tokenWithoutPrefix, this.secret);
     } catch (error) {
+      console.error('Token verification error:', error);
       throw new Error('Invalid token');
     }
   }

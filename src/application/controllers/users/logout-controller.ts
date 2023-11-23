@@ -1,3 +1,4 @@
+import { AuthRepositoryImpl } from '../../../infrastructure/repository/auth-repository';
 import { UserRepositoryImpl } from '../../../infrastructure/repository/user-repository';
 import { LogoutUseCase } from '../../use-cases/Users/logout-use-case';
 import { Request, Response } from 'express';
@@ -8,7 +9,7 @@ export class LogoutController {
     private logoutUseCase: LogoutUseCase
 
     constructor(){
-        const userRepository=new UserRepositoryImpl();
+        const userRepository=new AuthRepositoryImpl();
         this.logoutUseCase=new LogoutUseCase(userRepository);
 
     }

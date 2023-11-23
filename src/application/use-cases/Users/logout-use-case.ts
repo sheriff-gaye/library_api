@@ -1,13 +1,13 @@
-import { UserRepository } from "../../../domain/repository/user-repository";
+import {  AuthRepository } from '../../../domain/repository/user-repository';
 
 export class LogoutUseCase{
 
     constructor(
-        private userRepository:UserRepository
+        private authRepository:AuthRepository
     ){}
 
     async execute(id:string){
-        const user = await this.userRepository.logout(id);
+        const user = await this.authRepository.logout(id);
         return user
 
     }

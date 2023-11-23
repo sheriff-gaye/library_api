@@ -6,7 +6,6 @@ import { DeleteUserController } from '../../application/controllers/users/delete
 import { LoginController } from '../../application/controllers/users/login-controller';
 import { LogoutController } from '../../application/controllers/users/logout-controller';
 
-
 const userRouter=express.Router();
 
 
@@ -19,9 +18,9 @@ const logoutController=new LogoutController();
 
 
 userRouter.post('/register',(req,res)=>createUserController.createUser(req,res));
+userRouter.post('/login',(req,res)=>loginController.login(req,res))
 userRouter.get('/users',(req,res)=>getUserController.getusers(req,res));
 userRouter.patch('/user/:id',(req,res)=>updateUserController.updateUser(req,res));
 userRouter.delete('/user/:id',(req,res)=>deleteUserController.deleteUser(req,res));
-userRouter.post('/login',(req,res)=>loginController.login(req,res))
 userRouter.get('/logout/:id' ,(req,res)=>logoutController.Logout(req,res));
 export default userRouter;

@@ -14,14 +14,12 @@ export class DeleteUserController{
     async deleteUser(req:Request,res:Response){
         try {
             const {id}=req.params
-            const user =await this.deleteUserUseCase.execute(id);
+            await this.deleteUserUseCase.execute(id);
             res.status(200).json({message:"User Deleted Sucessfully"});
             
         } catch (error) {
             res.status(400).json({message:"Something went wrong"});
             
         }
-
-
     }
 }

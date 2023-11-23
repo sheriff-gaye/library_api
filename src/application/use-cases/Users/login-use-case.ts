@@ -1,11 +1,11 @@
 import { User } from "../../../domain/entities/users.entity";
-import { UserRepository } from "../../../domain/repository/user-repository";
+import {  AuthRepository } from '../../../domain/repository/user-repository';
 
 export class LoginUseCase {
-    constructor(private userRepository:UserRepository ) {}
+    constructor(private authRepository:AuthRepository ) {}
 
     async execute(email: string, password: string): Promise<User | null> {
-        const user = await this.userRepository.findByCredentials(email, password);
+        const user = await this.authRepository.findByCredentials(email, password);
         
         if (!user) {
             return null; 

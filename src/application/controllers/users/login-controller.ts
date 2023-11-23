@@ -2,6 +2,7 @@ import { UserRepositoryImpl } from "../../../infrastructure/repository/user-repo
 import { TokenService } from "../../helpers/token";
 import { LoginUseCase } from "../../use-cases/Users/login-use-case";
 import { Request, Response } from 'express';
+import { AuthRepositoryImpl } from '../../../infrastructure/repository/auth-repository';
 
 
 export class LoginController {
@@ -9,7 +10,7 @@ export class LoginController {
     private loginUseCase: LoginUseCase
 
     constructor() {
-        const userRepository = new UserRepositoryImpl();
+        const userRepository = new AuthRepositoryImpl();
         this.loginUseCase = new LoginUseCase(userRepository)
     }
 
@@ -23,8 +24,14 @@ export class LoginController {
 
             if (user) {
                 const token = TokenService.generateToken({ userId: user.id });
-                res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
-                return res.status(200).json({ message: "Login Successfully" });
+
+                res.cookie('token', token, { httpOnly: true, maxAge: 3600000, sameSite: 'none', secure: true });
+                
+                res.header('Authorization', `Bearer ${token}`);
+
+
+                res.json({ token });
+
             } else {
                 return res.status(400).json({ message: "Invalid email or password" });
             }
