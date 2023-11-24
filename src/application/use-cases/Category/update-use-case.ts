@@ -1,23 +1,21 @@
+import { UseCase } from "..";
 import { Category } from "../../../domain/entities/category-entity";
 import { CategoryRepository } from "../../../domain/repository/category-repository";
+import { CategoryMapper } from "../../mappers/category-mapper";
+import { CreateCategoryRequest } from "./request";
+import { CreateCategoryResponse } from './response';
 
-export class UpdateCategoryUseCase {
+export class UpdateCategoryUseCase implements UseCase<CreateCategoryRequest,CreateCategoryResponse> {
   constructor(private categoryRepository: CategoryRepository) {}
 
-  async execute(id: string, name: string): Promise<Category | null> {
-    const category = await this.categoryRepository.findById(id);
+  async execute(request:CreateCategoryRequest): Promise<CreateCategoryResponse> {
+    const category = await this.categoryRepository.findById(request.id);
 
     if (!category) {
       return null;
     }
+    const updatedCategory = CategoryMapper.toEntity(request)
+    return  await this.categoryRepository.update(updatedCategory);
 
-    category.name = name;
-    const updatedCategory = await this.categoryRepository.update(category);
-
-    if (updatedCategory) {
-      return updatedCategory;
-    } else {
-      return null; // Handle the case where the update fails
-    }
   }
 }

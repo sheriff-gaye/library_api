@@ -5,6 +5,7 @@ export class DeleteCategoryUseCase{
         private categoryRepository:CategoryRepository
     ){}
     async execute(id:string){
+        
         await this.categoryRepository.delete(id);
     }
 }

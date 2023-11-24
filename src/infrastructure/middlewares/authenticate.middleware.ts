@@ -25,7 +25,7 @@ export class AuthenticationMiddleware {
   ) => {
     try {
              
-      const token = req.headers.authorization;
+      const token = req.headers.authorization || req.cookies['token'];
       if (this.excludedRoutes.includes(req.path)) {
         return next();
       }

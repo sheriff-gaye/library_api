@@ -17,7 +17,7 @@ export class UpadateCategoryController {
         try {
             const { id } = req.params;
             const { name } = req.body;
-            const category = await this.updateCategoryUseCase.execute(id, name);
+            const category = await this.updateCategoryUseCase.execute({id, name});
 
             if (category) {
                 res.json(category);

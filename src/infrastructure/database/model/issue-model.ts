@@ -1,6 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
 import { IssueAttributes } from "../../../domain/entities/issue.entity";
 import sequelize from '../../config/databaseConfig';
+import { StudentModel } from './student-model';
+import { BooksModel } from './books-model';
 
 export class IssueModel  extends Model <IssueAttributes> implements IssueAttributes{
     id!: string;
@@ -16,38 +18,37 @@ IssueModel.init({
     id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
-        allowNull: false,
         primaryKey: true
-      },
-    bookId:{
+    },
+    bookId: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-            model: 'Book', 
-            key: 'id' 
-            }
+            model: BooksModel,
+            key: 'id'
+        }
     },
-    studentId:{
+    studentId: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-            model: 'Student', 
-            key: 'id' 
-            }
+            model: StudentModel,
+            key: 'id'
+        }
     },
-    issueDate:{
-        type:DataTypes.DATEONLY,
-        allowNull:false
+    issueDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: false
     },
-    returnDate:{
-        type:DataTypes.DATEONLY,
-        allowNull:true
-        },
-    status:{
-        type:DataTypes.STRING,
-        allowNull:false,
-        validate:{isIn:[['pending','approved','declined']]}
-    }
+    returnDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: true
+    },
+    status: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    
 }, {
     sequelize,
 });

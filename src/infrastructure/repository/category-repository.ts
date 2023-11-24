@@ -1,4 +1,4 @@
-import { Author } from '../../domain/entities/author-entity';
+import { CategoryMapper } from '../../application/mappers/category-mapper';
 import { Category } from '../../domain/entities/category-entity';
 import { CategoryRepository } from '../../domain/repository/category-repository';
 import { CategoryModel } from '../database/model/category-model';
@@ -11,17 +11,15 @@ export class CategoryRepositoryImpl implements CategoryRepository {
         return category?.toJSON() as Category
     }
     async getAll(): Promise<Category[]> {
-        return  await CategoryModel.findAll();
+        const categories = await CategoryModel.findAll();
+        return categories.map((category) => CategoryMapper.toEntity(category));
     }
+    
+    async create(categoryData: Category): Promise<Category> {
+        const mappedCategory = CategoryMapper.toDB(categoryData);
+        const category=await CategoryModel.create(mappedCategory);
+        return CategoryMapper.toEntity(category);
 
-    async create(categoryData: Partial<Category>): Promise<Category> {
-        
-        let existing = await CategoryModel.findOne({where:{
-            name: categoryData.name
-        }});
-        if (existing) throw new Error('Category already exists');
-
-        return await CategoryModel.create(categoryData)
     }
     
     async update(category: Category): Promise<Category | null> {
@@ -30,8 +28,9 @@ export class CategoryRepositoryImpl implements CategoryRepository {
         if (!existingCategory) {
           return null;
         }
-      
-        return await existingCategory?.update(category);
+        const mappedCategory=CategoryMapper.toDB(category)
+        const newcategory=await existingCategory.update(mappedCategory);
+        return CategoryMapper.toEntity(newcategory)
       }
       
     async delete(id: string): Promise<void> {

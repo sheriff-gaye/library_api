@@ -7,6 +7,7 @@ import studentRouter from './students.router';
 import userRouter from './user.router';
 import { UserRepositoryImpl } from '../repository/user-repository';
 import { AuthenticationMiddleware } from '../middlewares/authenticate.middleware';
+import { issueRouter } from './issue.router';
 
 const router = express.Router();
 
@@ -14,11 +15,13 @@ const userRepository = new UserRepositoryImpl();
 const excludedRoutes = ['/register', '/login','/students/create'];
 const authMiddleware = new AuthenticationMiddleware(userRepository, excludedRoutes);
 
+router.use('/' ,issueRouter);
+router.use('/', categoryRouter);
+
 router.use(authMiddleware.handleAuthentication);
 
 router.use('/', authorRouter);
 
-router.use('/', categoryRouter);
 router.use('/',levelRouter)
 router.use('/',booksRouter)
 router.use('/',studentRouter)
