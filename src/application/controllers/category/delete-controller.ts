@@ -15,11 +15,12 @@ export class DeleteCategoryController {
     async deleteCategory(req: Request, res: Response) {
         try {
             const { id } = req.params;
+            
             await this.deleteCategoryUseCase.execute(id);
             res.status(200).json({ message: "Category Deleted Successfully" });
 
-        } catch (error) {
-            res.status(404).json({ message: "Error in Deleting Category" })
+        } catch (error:any) {
+            res.status(404).json({ error: error.message })
 
         }
     }

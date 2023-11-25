@@ -15,8 +15,9 @@ export class GetAllLevelController {
         try {
             const levels = await this.getAllLevelUseCase.execute();
             res.status(200).json(levels);
-        } catch (error) {
-            res.status(400).json({ message: "Something went wrong" });
+        } catch (error:any) {
+            return res.status(400).json({ error:error.message });
+
         }
     };
 

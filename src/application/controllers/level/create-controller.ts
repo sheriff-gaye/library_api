@@ -23,12 +23,13 @@ export class CreateLevelController {
             if (!name) {
                 return res.status(400).json({ message: "Name is required" })
             }
-            const newLevel = await this.createLevelUseCase.execute(code, name);
+            const newLevel = await this.createLevelUseCase.execute({code, name});
 
             res.status(200).json(newLevel);
 
-        } catch (error) {
-            res.status(400).json({ error: 'Level with the same name or code already exists' });
+        } catch (error:any) {
+            return res.status(400).json({ error:error.message });
+
         }
     };
 }

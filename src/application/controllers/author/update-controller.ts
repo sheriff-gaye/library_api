@@ -14,14 +14,10 @@ export class UpdateAuthorController {
         try {
             const { id } = req.params;
             const { firstName, lastName } = req.body;
-            const updatedAuthor = await this.updateAuthorUseCase.execute(id, firstName, lastName);
-            if (updatedAuthor) {
-                res.json(updatedAuthor);
-            } else {
-                res.json({ message: 'Author not found' });
-            }
-        } catch (error) {
-            res.json({ message: 'Update failed' });
+            const updatedAuthor = await this.updateAuthorUseCase.execute({ id, firstName, lastName });
+            res.json(updatedAuthor);
+        } catch (error: any) {
+            res.status(500).json({ error: error.message });
         }
     }
 }

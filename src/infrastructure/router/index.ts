@@ -15,13 +15,13 @@ const userRepository = new UserRepositoryImpl();
 const excludedRoutes = ['/register', '/login','/students/create'];
 const authMiddleware = new AuthenticationMiddleware(userRepository, excludedRoutes);
 
-router.use('/' ,issueRouter);
-router.use('/', categoryRouter);
+
 
 router.use(authMiddleware.handleAuthentication);
 
 router.use('/', authorRouter);
-
+router.use('/' ,issueRouter);
+router.use('/', categoryRouter);
 router.use('/',levelRouter)
 router.use('/',booksRouter)
 router.use('/',studentRouter)

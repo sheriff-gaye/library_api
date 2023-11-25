@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { CreateCategoryUseCase } from '../../use-cases/Category/create-use-case';
 import { CategoryRepositoryImpl } from '../../../infrastructure/repository/category-repository';
 
-export class CreateCategoryController {
+export class CreateCategoryController  {
 
     private createCategoryUseCase: CreateCategoryUseCase;
 
@@ -13,17 +13,17 @@ export class CreateCategoryController {
 
     async createCategory(req: Request, res: Response) {
         try {
-            const {id , name } = req.body;
+            const { name } = req.body;
 
             if (!name) {
                 return res.status(400).json({ error: "Name is required" });
             }
 
-            const newCategory = await this.createCategoryUseCase.execute( {name,id} );
+            const newCategory = await this.createCategoryUseCase.execute({ name});
             return res.json(newCategory);
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: 'Internal Server Error' });
+        } catch (error:any) {
+            return res.status(400).json({ error:error.message });
+
         }
     }
 }

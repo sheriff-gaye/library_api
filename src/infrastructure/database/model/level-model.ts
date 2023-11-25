@@ -1,6 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
-import { LevelAttributes } from "../../../application/interface/level-interface";
 import sequelize from "../../config/databaseConfig";
+import { LevelAttributes } from '../../../domain/entities/level-entity';
 
 
 class LevelModel extends Model<LevelAttributes> implements LevelAttributes {

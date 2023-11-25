@@ -19,10 +19,11 @@ export class CreateBooksController {
             if (!categoryId) {
                 res.json({ message: "Category is required" })
             }
-            const newBook = await this.createBooksUseCase.execute(title, description, publisher, publish_date, copies, authorId, categoryId);
+            const newBook = await this.createBooksUseCase.execute({title, description, publisher, publish_date, copies, authorId, categoryId});
             res.json(newBook);
-        } catch (error) {
-            res.json({ message: "Something went Wrong" });
+        }catch (error:any) {
+            return res.status(400).json({ error:error.message });
+
         }
     }
 }

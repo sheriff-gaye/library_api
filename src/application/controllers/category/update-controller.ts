@@ -19,13 +19,10 @@ export class UpadateCategoryController {
             const { name } = req.body;
             const category = await this.updateCategoryUseCase.execute({id, name});
 
-            if (category) {
-                res.json(category);
-            } else {
-                res.status(404).json({ message: "Category not found or update failed" });
-            }
-        } catch (error) {
-            res.status(500).json({ message: "Internal server error" });
+            res.json(category);
+
+        } catch (error:any) {
+            res.status(500).json({ error: error.message });
         }
     }
 

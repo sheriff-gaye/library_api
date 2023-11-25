@@ -1,5 +1,5 @@
 export type CreateIssueRequest = {
-    id:string
+    id?:string
     bookId: string;
     studentId: string;
     status:string;

@@ -18,8 +18,8 @@ export class GetAllBooksController {
             const category = await this.getAllBooksUseCase.execute();
             res.status(200).json(category);
 
-        } catch (error) {
-            res.json({ message: "Error in Getting Categories" });
+        } catch (error:any) {
+            return res.status(400).json({ error:error.message });
 
         }
     }

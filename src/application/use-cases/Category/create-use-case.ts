@@ -1,11 +1,9 @@
-import { Category } from '../../../domain/entities/category-entity';
 import { CategoryRepository } from '../../../domain/repository/category-repository';
 import { CreateCategoryRequest } from './request';
 import { CreateCategoryResponse } from './response';
-import { UseCase } from '../index';
 import { CategoryMapper } from '../../mappers/category-mapper';
 
-export class CreateCategoryUseCase implements UseCase<CreateCategoryRequest, CreateCategoryResponse> {
+export class CreateCategoryUseCase {
 
     constructor(
         private readonly categoryRepository: CategoryRepository

@@ -1,5 +1,8 @@
 import { Level } from "../../../domain/entities/level-entity";
 import { LevelRepository } from "../../../domain/repository/level-repository";
+import { LevelMapper } from "../../mappers/level-mappers";
+import { LevelRequest } from "./request";
+import { LevelResponse } from './response';
 
 
 export class CreateLevelUseCase {
@@ -7,11 +10,9 @@ export class CreateLevelUseCase {
         private levelRepository: LevelRepository
     ) { }
 
-    async execute( code: string, name: string):Promise <Level> {
-        const newLevelData: Partial<Level> = { code, name}
-        return await this.levelRepository.create(
-            newLevelData
-        );
+    async execute(request:LevelRequest):Promise <LevelResponse> {
+        const newLevelData =LevelMapper.toEntity(request);
+        return await this.levelRepository.create(newLevelData);
 
     }
 }

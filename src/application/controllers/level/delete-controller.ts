@@ -17,9 +17,8 @@ export class DeleteLevelController {
             const { id } = req.params
             await this.deleteLevelUseCase.execute(id);
             res.status(200).json({ message: "Level Deleted Successfully" });
-        } catch (error) {
-
-            res.status(404).json({ message: "Something went wrong" });
+        } catch (error:any) {
+            return res.status(400).json({ error:error.message });
 
         }
 

@@ -41,21 +41,21 @@ export class Issue {
     get studentId(): string {
         return this._studentId;
     }
-    get issueDate(): Date | undefined {
+    get issueDate(): Date  {
         return this._issueDate;
     }
-    get returnDate(): Date | undefined{
+    get returnDate(): Date{
         return this._returnDate;
     }
     get status(): string {
         return this._status;
     }
 
-    get createdAt(): Date | undefined{
-        return this._createdAt
+    get createdAt(): Date {
+        return this._createdAt!
     }
-    get updatedAt(): Date | undefined{
-        return this._updatedAt
+    get updatedAt(): Date {
+        return this._updatedAt!
     }
 
     toJSON(): IssueAttributes{
@@ -67,10 +67,9 @@ export class Issue {
             returnDate: this._returnDate,
             status: this._status,
             createdAt:  this._createdAt?.toISOString() ,
-            updatedAt: this?._updatedAt?.toISOString()
+            updatedAt: this._updatedAt?.toISOString()
         }   
     }
-    
 
     public static IssueProperties(props:IssueAttributes):Issue{
         return new Issue(props);

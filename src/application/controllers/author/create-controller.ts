@@ -14,10 +14,10 @@ export class CreateAuthorController {
     async createAuthor(req: Request, res: Response) {
         try {
             const { firstName, lastName } = req.body;
-            const newAuthor = await this.createAuthorUseCase.execute(firstName, lastName);
+            const newAuthor = await this.createAuthorUseCase.execute({firstName, lastName});
             res.status(201).json(newAuthor);
-        } catch (error) {
-            res.status(500).json({ error: 'Something went wrong' });
+        } catch (error:any) {
+            res.status(500).json({ error: error.message});
         }
     }
 

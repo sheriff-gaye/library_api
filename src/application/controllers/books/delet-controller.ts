@@ -24,9 +24,8 @@ export class DeleteBooksController {
             await this.deleteBookUseCase.execute(id);
 
             return res.status(200).json({ message: "Book Deleted Successully" });
-        } catch (error) {
-
-            res.status(400).json({ message: "Something Went Wrong" });
+        } catch (error: any) {
+            return res.status(400).json({ error: error.message });
 
         }
 

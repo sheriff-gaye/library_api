@@ -1,8 +1,8 @@
 import { DataTypes, Model } from "sequelize";
-import { CategoryAttributs } from "../../../application/interface/category-interface";
 import sequelize from '../../config/databaseConfig';
+import { CategoryAttributes } from "../../../domain/entities/category-entity";
 
-class CategoryModel extends Model<CategoryAttributs> implements CategoryAttributs {
+class CategoryModel extends Model<CategoryAttributes> implements CategoryAttributes {
     public id!: string;
     public name!: string;
 }

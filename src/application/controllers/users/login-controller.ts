@@ -25,7 +25,7 @@ export class LoginController {
             if (user) {
                 const token = TokenService.generateToken({ userId: user.id });
 
-                res.cookie('token', token, { httpOnly: true, maxAge: 120000, sameSite: 'none', secure: true });
+                res.cookie('token', token, { httpOnly: true, maxAge: 3600000, sameSite: 'none', secure: true });
                 
                 res.header('Authorization', `Bearer ${token}`);
 

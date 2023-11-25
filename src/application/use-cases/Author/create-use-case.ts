@@ -1,15 +1,16 @@
-import { Author } from '../../../domain/entities/author-entity';
 import { AuthorRepository } from '../../../domain/repository/author-repository';
+import { AuthorMapper } from '../../mappers/author-mappers';
+import { AuthorRequest } from './request';
+import { AuthorResponse } from './response';
+
+
 export class CreateAuthorUseCase {
   constructor(private authorRepository: AuthorRepository) {}
 
 
-  async execute(firstName: string, lastName: string): Promise<Author> {
-    const newAuthorData: Partial<Author> = {
-      firstName,
-      lastName,
-    }; 
-    return  await this.authorRepository.create(newAuthorData as Author);
+  async execute(request:AuthorRequest): Promise<AuthorResponse> {
+    const author = AuthorMapper.toEntity(request) 
+    return  await this.authorRepository.create(author);
    
   }
 }

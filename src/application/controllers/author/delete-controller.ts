@@ -19,9 +19,8 @@ export class DeleteAuthorController {
             const { id } = req.params;
             await this.deleteAuthtorUseCase.execute(id);
             res.json({ message: "Author Deleted Successfully" });
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: "Something went wrong" });
+        } catch (error:any) {
+            res.status(500).json({ error: error.message});
         }
     }
 };

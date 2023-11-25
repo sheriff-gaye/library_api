@@ -17,8 +17,8 @@ export class GetAllAuthorController {
         try {
             const authors = await this.getAllAuthorsUseCase.execute();
             res.status(200).json(authors);
-        } catch (error) {
-            res.status(500).json({ error: 'Something went wrong' });
+        } catch (error:any) {
+            res.status(500).json({ error: error.message});
         }
     }
 }

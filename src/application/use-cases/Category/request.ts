@@ -1,6 +1,6 @@
 
 
 export type CreateCategoryRequest={
-    id:string
+    id?:string
     name:string
 }

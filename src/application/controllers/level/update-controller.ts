@@ -17,13 +17,13 @@ async updateLevel (req: Request, res: Response) {
     try {
         const { id } = req.params;
         const { name, code } = req.body;
-        const updatedLevel = await this.updateLevelUseCase.execute(id, name, code);
+        const updatedLevel = await this.updateLevelUseCase.execute({id, name, code});
         res.json(updatedLevel);
 
-    } catch (error) {
-        res.status(404).json({ message: "Something went wrong" });
+    } catch (error:any) {
+        return res.status(400).json({ error:error.message });
+
     }
 }
-
 
 }
