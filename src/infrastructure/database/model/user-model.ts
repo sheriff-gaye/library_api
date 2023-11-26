@@ -1,7 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from "../../config/databaseConfig";
 import { UserAttributes } from '../../../domain/entities/users.entity';
-import bcrypt from 'bcrypt';
 
 class UserModel extends Model<UserAttributes> implements UserAttributes {
     [x: string]: any;
