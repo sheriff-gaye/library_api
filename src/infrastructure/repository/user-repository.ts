@@ -1,60 +1,39 @@
+import { UserMapper } from "../../application/mappers/user-mapper";
 import { User } from "../../domain/entities/users.entity";
 import { UserRepository } from "../../domain/repository/user-repository";
 import { UserModel } from "../database/model/user-model";
 
 export class UserRepositoryImpl implements UserRepository {
-   
+
     async register(data: User): Promise<User> {
         const existingUser = await UserModel.findOne({
-            where: {
-                email: data.email,
-            },
+            where: { email: data.email }
         });
 
-        if (existingUser) {
-            throw new Error('Email already in use');
-        }
+        if (existingUser) throw new Error('Email already in use');
 
-        const user = new User(
-            data.id || '',
-            data.fullName || '',
-            data.email || '',
-            data.password || ''
-        );
-
-        await user.setPassword(data.password || '');
-
-        await UserModel.create({
-            id: user.id,
-            fullName: user.fullName,
-            email: user.email,
-            password: user.password,
-        });
-
-        return user;
+        const userEntity = UserMapper.toEntity(data);
+        await userEntity.setPassword(data.password);
+      
+        const newUser = await UserModel.create(UserMapper.toDB(userEntity));
+        return UserMapper.toEntity(newUser);
     }
 
     async findById(id: string): Promise<User | null> {
         const user = await UserModel.findByPk(id);
-        return user ? user.toJSON() as User : null;
+        return UserMapper.toEntity(user);
     }
 
     async update(updateData: User): Promise<User | null> {
         const existing_user = await UserModel.findByPk(updateData.id);
 
-        const user = new User(
-            updateData.id,
-            updateData.fullName,
-            updateData.email,
-            updateData.password
-        );
-        
-        await user.setPassword(updateData.password);
-        console.log(await user.setPassword(updateData.password))
+        if (!existing_user) throw new Error('Email already in use');
 
-        await existing_user?.update(user);
+        const setUser=UserMapper.toEntity(updateData);
+        await setUser.setPassword(updateData.password);
 
-        return existing_user?.toJSON() as User;
+        await existing_user.update(UserMapper.toDB(updateData));
+        return UserMapper.toEntity(setUser);
     }
 
     async delete(id: string): Promise<void> {
@@ -65,6 +44,6 @@ export class UserRepositoryImpl implements UserRepository {
 
     async getAll(): Promise<User[]> {
         const users = await UserModel.findAll();
-        return users.map((userModel) => userModel.toJSON() as User);
+        return users.map((item) => UserMapper.toEntity(item));
     }
 }

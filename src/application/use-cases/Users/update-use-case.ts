@@ -1,25 +1,24 @@
 import { UserRepository } from "../../../domain/repository/user-repository";
 import { User } from '../../../domain/entities/users.entity';
+import { UserRequest } from "./request";
+import { UserMapper } from "../../mappers/user-mapper";
 
 export class UpdateUserUseCase {
 
     constructor(private userRepository: UserRepository) { }
 
-    async execute(id: string, fullName: string, email: string, password: string) {
-       try {
-        const user = await this.userRepository.findById(id);
-        if (!user) throw new Error("User Not Found")
+    async execute(request:UserRequest):Promise <User | null> {
+        if(!request.id)throw new Error("Id is Required")
 
-        user.fullName=fullName
-        user.email=email
-        // user.setPassword(password);
-    
-        const updatedUser = await this.userRepository.update(user);
+        const old_user = await this.userRepository.findById(request.id);
+        if (!old_user) throw new Error("User Not Found")
 
-        return updatedUser;
+        const user=UserMapper.toEntity(request);
+        user.setPassword(request.password);
+        return  await this.userRepository.update(user);
+
         
-       } catch (error) {
-        console.log("Update p:",error)
-       }
+        
+     
     }
 }

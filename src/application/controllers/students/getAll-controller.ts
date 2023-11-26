@@ -13,14 +13,14 @@ export class GetAllStudentController {
 
     }
 
-    async getStudents(rqe: Request, res: Response) {
+    async getStudents(req: Request, res: Response) {
 
         try {
             const allStudents = await this.getAllStudentsUseCase.execute()
             res.status(200).json(allStudents);
 
-        } catch (error) {
-            res.status(400).json({ message: "Something went wrong" });
+        } catch (error: any) {
+            return res.status(400).json({ error: error.message });
 
         }
 

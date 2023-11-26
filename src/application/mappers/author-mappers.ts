@@ -14,7 +14,7 @@ export class AuthorMapper {
     }
 
     public static toEntity(authorData:any):Author{
-        return Author.CreateProperties({
+        return new Author({
             id: authorData.id,
             firstName: authorData.firstName,
             lastName: authorData.lastName,

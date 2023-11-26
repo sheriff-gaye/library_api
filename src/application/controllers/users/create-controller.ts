@@ -25,10 +25,10 @@ export class CreateUserController {
                 return res.status(401).json({message:"Password is required"})
             }
             
-            const user = await this.createUserUseCase.execute(fullName, email, password);
+            const user = await this.createUserUseCase.execute({fullName, email, password});
             res.json(user);
-        } catch (error) {
-            res.status(400).json({ message: "Something went wrong"});
+        } catch (error:any) {
+            res.status(500).json({ error: error.message });
         }
 
     }

@@ -17,8 +17,9 @@ export class GetOneStudentController{
             const result=await this.getOneStudentUseCase.execute(id);
             res.json(result)
         }
-        catch(error){
-            res.status(400).json({message:"Something went wrong"});
+        catch (error: any) {
+            return res.status(400).json({ error: error.message });
+
         }
     }
 }

@@ -18,10 +18,8 @@ export class GetAllUsersController {
             const users = await this.getAllUserUseCase.execute()
             res.status(200).json(users);
             
-        } catch (error) {
-
-            res.status(400).json({message:"Something went wrong"});
-            
+        } catch (error:any) {
+            res.status(500).json({ error: error.message });
         }
     }
 

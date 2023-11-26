@@ -36,9 +36,8 @@ export class LoginController {
                 return res.status(400).json({ message: "Invalid email or password" });
             }
 
-        } catch (error) {
-            res.status(400).json({ message: "Something went wrong" });
-
+        } catch (error:any) {
+            res.status(500).json({ error: error.message });
         }
     }
 }

@@ -17,12 +17,11 @@ export class UpdateUserController{
             const {id}=req.params
             const {fullName,email,password}=req.body
 
-            const user=await this.updateUserUseCase.execute(id,fullName,email,password);
+            const user=await this.updateUserUseCase.execute({id,fullName,email,password});
             res.status(200).json(user);
             
-        } catch (error) {
-            res.status(400).json({message:"Something went wrong"});
-            
+        }catch (error:any) {
+            res.status(500).json({ error: error.message });
         }
     }
 }

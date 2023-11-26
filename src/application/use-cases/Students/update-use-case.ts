@@ -1,40 +1,22 @@
-import { Students } from "../../../domain/entities/student-entity";
 import { StudentsRepository } from "../../../domain/repository/students-repository";
+import { StudentsRequest } from "./request";
+import { StudentResponse } from "./response";
+import { StudentMapper } from '../../mappers/student-mapper';
 
 
-export class UpdateStudentsUseCase{
-    constructor(
-        private studentsRepository:StudentsRepository
-    ){}
+export class UpdateStudentsUseCase {
+    constructor(private readonly studentsRepository: StudentsRepository) { }
 
+    async execute(request: StudentsRequest): Promise<StudentResponse> {
+        if (!request.id) throw new Error("Id is required");
 
-    async execute(id:string,
-        firstname: string,
-        lastname: string,
-        email: string,
-        phone: string,
-        gender: string,
-        dob: Date,
-        levelId: string,
-        studentId: string
-        ):Promise<Students | null>{
+        const existingStudents = await this.studentsRepository.findById(request.id);
+        if (!existingStudents) throw new Error("Student Not Found");
 
-            const existingStudents=await this.studentsRepository.findById(id);
-            if(!existingStudents){
-                return null
-            }
+        const studentData=StudentMapper.toEntity(request);
 
-            existingStudents.firstname=firstname;
-            existingStudents.lastname=lastname;
-            existingStudents.email=email;
-            existingStudents.phone=phone;
-            existingStudents.gender=gender;
-            existingStudents.dob=dob;
-            existingStudents.levelId=levelId
-            existingStudents.studentId=studentId
+        return await this.studentsRepository.update(studentData);
 
-            return await this.studentsRepository.update(existingStudents);
-        
 
 
     }
