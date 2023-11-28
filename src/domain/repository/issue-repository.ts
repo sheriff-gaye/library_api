@@ -1,10 +1,10 @@
 import { Issue } from "../entities/issue.entity";
 
 export interface IssueRepository{
-    getBorrow(id:string):Promise<Issue>;
-    getBorrows():Promise<Issue[]>;
-    createBorrow(isue:Issue):Promise<Issue>;
-    updateBorrow(borrow:Issue):Promise<Issue>;
-    deleteBorrow(id:string):Promise<void>;
+    getIssue(id:string):Promise<Issue>;
+    getIssues():Promise<Issue[]>;
+    createIssue(isue:Issue):Promise<Issue>;
+    updateIssue(isssue:Issue):Promise<Issue | null>;
+    deleteIssue(id:string):Promise<void>;
 
 }

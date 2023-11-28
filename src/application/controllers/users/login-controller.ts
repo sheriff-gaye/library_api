@@ -29,7 +29,6 @@ export class LoginController {
                 
                 res.header('Authorization', `Bearer ${token}`);
 
-
                 res.json({ token });
 
             } else {

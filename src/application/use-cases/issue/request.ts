@@ -1,4 +1,4 @@
-export type CreateIssueRequest = {
+export type IssueRequest = {
     id?:string
     bookId: string;
     studentId: string;

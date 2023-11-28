@@ -47,6 +47,7 @@ IssueModel.init({
     status: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue:"Issued"
     },
     
 }, {
