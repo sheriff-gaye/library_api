@@ -14,7 +14,9 @@ export class GetAllIssueController {
 
     async getAllIssues(req: Request, res: Response) {
         try {
-            const issues = await this.getAllIssueUseCase.execute()
+            const { status}  = req.query;
+           
+            const issues = await this.getAllIssueUseCase.execute(status as string);
             return res.status(200).json(issues);
 
         } catch (error: any) {

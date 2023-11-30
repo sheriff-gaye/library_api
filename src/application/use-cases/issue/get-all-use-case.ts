@@ -3,11 +3,13 @@ import { IssueRepository } from "../../../domain/repository/issue-repository";
 
 export class GetAllIssueUseCase{
 
-    constructor(private issueRepository:IssueRepository){}
+     constructor(private issueRepository:IssueRepository){}
 
-    async execute():Promise<Issue []>{
+    async execute(search?: string):Promise<Issue []>{
 
-        const issue=await this.issueRepository.getIssues();
+        console.log("Use case", search );
+
+        const issue=await this.issueRepository.getIssues(search);
         return issue;
 
     }
