@@ -4,6 +4,9 @@ import { CategoryRepository } from '../../domain/repository/category-repository'
 import { CategoryModel } from '../database/model/category-model';
 
 export class CategoryRepositoryImpl implements CategoryRepository {
+
+
+
     async findById(id: string): Promise<Category | null> {
         const category = await CategoryModel.findByPk(id);
         return category?.toJSON() as Category
