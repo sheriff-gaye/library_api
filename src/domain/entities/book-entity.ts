@@ -1,10 +1,10 @@
 export interface BookAttributes{
     id: string;
     title: string;
-    description:Text;
+    description:string;
     publisher:string;
     publish_date:Date;
-    copies:number
+    copies:number;
     authorId:string;
     categoryId:string
     createdAt?:string
@@ -16,7 +16,7 @@ export interface BookAttributes{
 export class Books{
     private _id:string;
     private _title:string;
-    private _description:Text;
+    private _description:string;
     private _publish_date:Date;
     private _publisher:string;
     private _copies:number;
@@ -45,7 +45,7 @@ export class Books{
     get title():string{
         return this._title;
     }
-    get description():Text{
+    get description():string{
         return this._description;
     }
     get publisher():string{

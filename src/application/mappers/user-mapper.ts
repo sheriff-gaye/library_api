@@ -9,6 +9,9 @@ export class UserMapper{
             fullName:user.fullName,
             email:user.email,
             password:user.password,
+            phone:user.phone,
+            location:user.location,
+            address:user.address,
             createdAt:user.createdAt?.toISOString(),
             updatedAt:user.updatedAt?.toISOString()
         }
@@ -21,6 +24,9 @@ export class UserMapper{
             fullName:user.fullName,
             email:user.email,
             password:user.password,
+            phone:user.phone,
+            location:user.location,
+            address:user.address,
             createdAt: user.createdAt,
             updatedAt:user.updatedAt
         })

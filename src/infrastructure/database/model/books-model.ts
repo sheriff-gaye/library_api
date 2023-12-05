@@ -7,7 +7,7 @@ import { CategoryModel } from './category-model';
 export class BooksModel extends Model<BookAttributes> {
     id!: string;
     title!: string;
-    description!: Text;
+    description!: string;
     publisher!: string;
     publish_date!: Date;
     copies!: number;

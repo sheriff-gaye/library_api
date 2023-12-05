@@ -8,6 +8,8 @@ import { Op } from "sequelize";
 
 
 export class IssueRepositoryImpl implements IssueRepository {
+
+
     async returnIssue(issue: Issue): Promise<Issue> {
         const issueToReturn = await IssueModel.findByPk(issue.id);
 

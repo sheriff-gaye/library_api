@@ -5,6 +5,10 @@ export interface UserAttributes {
     fullName: string;
     email: string;
     password: string;
+    phone?:number;
+    address?:string;
+    location?:string;
+    profile?:string
     createdAt?:string;
     updatedAt?:string;
 }
@@ -14,8 +18,13 @@ export class User {
     private _fullName: string;
     private _email: string;
     private _password: string;
+    private _phone:number;
+    private _address:string;
+    private _profile:string;
+    private _location:string;
     private _createdAt?:Date
     private _updatedAt?:Date
+
     
     
     constructor(props:UserAttributes) {
@@ -23,6 +32,10 @@ export class User {
         this._fullName=props.fullName
         this._email=props.email
         this._password=props.password
+        this._phone=props.phone!
+        this._address=props.address!
+        this._profile=props.profile!
+        this._location=props.location!
         this._createdAt=props.createdAt ? new Date(props.createdAt) : undefined
         this._updatedAt=props.updatedAt ? new Date(props.updatedAt) :undefined
      }
@@ -41,6 +54,20 @@ export class User {
     get password(): string {
         return this._password;
       }
+
+    get phone():number{
+      return this._phone  
+    }
+    get address():string{
+      return this._address
+    }
+    get location():string{
+      return this._location
+    }
+
+    get profile():string{
+      return this._profile
+    }
 
     get createdAt(): Date {
         return this._createdAt!
@@ -63,6 +90,9 @@ export class User {
             fullName:this._fullName,
             email:this._email,
             password:this._password,
+            phone:this._phone,
+            address:this._address,
+            location:this._location,
             createdAt:this._createdAt?.toISOString(),
             updatedAt:this._updatedAt?.toISOString()
             
