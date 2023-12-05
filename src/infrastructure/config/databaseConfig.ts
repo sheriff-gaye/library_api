@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 
 const sequelize = new Sequelize('library_api', 'postgres', '1234', {
-  host: 'localhost',
+  host: 'postgres', 
   dialect: 'postgres',
 });
 

@@ -25,13 +25,13 @@ BooksModel.init(
             allowNull: false,
         },
         description: {
-            type: DataTypes.TEXT
+            type: DataTypes.STRING
         },
         authorId: {
-            type: DataTypes.UUID, // Assuming authorId is a UUID
+            type: DataTypes.UUID, 
         },
         categoryId: {
-            type: DataTypes.UUID, // Assuming categoryId is a UUID
+            type: DataTypes.UUID,
         },
         publisher: {
             type: DataTypes.STRING,

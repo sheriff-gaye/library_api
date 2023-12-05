@@ -1,18 +1,21 @@
-version: '3'
+
+version: '3.9'
 
 services:
-  app:
-    build: .
-    ports:
-      - "8080:8080"
-    depends_on:
-      - db
-    environment:
-      DATABASE_URL: "postgres://postgres:1234@db:5432/library_api"  # Adjust this URL based on your setup
-
-  db:
+  postgres:
+    container_name: database
     image: postgres
+    restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: library_api
+
+  app:
+    build:
+      context: .
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
